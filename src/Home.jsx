@@ -9,16 +9,19 @@ const Home = () => {
   useEffect(() => {
     const getQuestion = async () => {
       try {
-        const res = await fetch(query)
+        const res = await fetch(
+          "https://the-trivia-api.com/v2/questions?region=AR&limit=1"
+        )
         const data = await res.json()
-        setPokemons(results)
-        setPages(Math.round(count / amount))
+        setQuestion(data[0])
       } catch (error) {
         console.log(error)
       }
     }
     getQuestion()
-  }, [query])
+  }, [])
+
+  console.log(question)
 
   return (
     <div className="answers-container">
